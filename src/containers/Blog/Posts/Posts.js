@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import axios from '../../../axios'
 import Post from '../../../components/Post/Post'
 import './Posts.css'
@@ -10,6 +11,7 @@ class Posts extends Component {
 
     async componentDidMount() {
         try {
+            console.log(this.props)
             const response = await axios.get('/posts')
             const posts = response.data.slice(0, 4)
             const updatedPosts = posts.map(post => ({
@@ -44,4 +46,4 @@ class Posts extends Component {
     }
 }
 
-export default Posts
+export default withRouter(Posts)

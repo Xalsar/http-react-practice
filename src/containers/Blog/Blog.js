@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import axios from 'axios'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import axios from '../../axios'
 
 import FullPost from './FullPost/FullPost';
@@ -15,19 +15,17 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/post">New Post</a></li>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to={{
+                                pathname: '/new-post',
+                                hash: '#submit',
+                                search: '?quick-submit=true'
+                              }}>New Post</Link></li>
                         </ul>
                     </nav>
                 </header>
-                <Route path="/" exact render={() => <h1>Home</h1>}/>
-                <Posts/>
-                <section>
-                    <FullPost/>
-                </section>
-                <section>
-                    <NewPost />
-                </section>
+                <Route path="/" exact component={Posts}/>
+                <Route path="/new-post" exact component={NewPost}/>
             </div>
         );
     }
