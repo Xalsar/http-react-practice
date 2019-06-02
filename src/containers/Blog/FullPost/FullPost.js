@@ -7,7 +7,7 @@ class FullPost extends Component {
         loadedPost: null
     }
 
-    async componentDidMount() {
+    async componentDidUpdate() {
         const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${this.props.match.params.id}`)
         if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id)) {
             this.setState({ loadedPost: response.data })
@@ -20,6 +20,7 @@ class FullPost extends Component {
     }
 
     render() {
+        console.log('OK!')
         let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
         if (this.props.match.params.id) {
             post = <p style={{ textAlign: 'center' }}>Loading...!</p>;
